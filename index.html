@@ -58,7 +58,7 @@
             background-color: rgba(255, 255, 255, 0.01);
         }
 
-        form {
+        .form {
             width: 85%;
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
@@ -90,7 +90,7 @@
                 background-color: var(--cor-fundo);
             }
 
-            form {
+            .form {
                 width: 95%;
             }
         }
@@ -149,6 +149,10 @@
             font-size: 14px;
             color: #777;
         }
+
+        .botao-wrapper {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -164,7 +168,7 @@
 
         <div class="login">
             <div class="barra-login">
-                <form>
+                <div class="form">
 
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Enter email" />
@@ -177,8 +181,10 @@
                         <label for="remember">Remember me</label>
                     </div>
 
-                    <button type="submit">Submit</button>
-                </form>
+                    <div class="botao-wrapper">
+                        <button id="btnLogin">Entrar</button>
+                    </div>
+                </div>
 
                 <span class="versao">Versão 1.0</span>
             </div>
@@ -193,7 +199,31 @@
     </main>
 
     <!-- jQuery + interações -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/mainInjectJsOrCss.js"></script>
+
+    <script>
+        $('#btnLogin').on('click', async function () {
+
+            var email = $('#email').val().trim()
+            var password = $('#password').val().trim()
+
+            var data = JSON.stringify({
+                email,
+                password
+            })
+
+            const resposta = await fetchApi('POST', '/user/login', data);
+
+            if (resposta.success) {
+                alert(resposta.message)
+            } else {
+                alert(resposta.message)
+            }
+
+        });
+
+    </script>
 
 </body>
 
