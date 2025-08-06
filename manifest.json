@@ -1,6 +1,6 @@
 {
-  "name": "Meu App",
-  "short_name": "Meu App",
+  "name": "Documentation Apps",
+  "short_name": "Documentation Apps",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
