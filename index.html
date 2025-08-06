@@ -57,6 +57,16 @@
             background-color: rgba(255, 255, 255, 0.01);
         }
 
+        form {
+            width: 85%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+
+            font-family: Arial, sans-serif;
+            margin-top: -60px;
+        }
+
         /* ✅ Estilo para telas grandes */
         @media (min-width: 769px) {
             .login {
@@ -68,7 +78,7 @@
                 width: 75%;
                 height: 100vh;
                 z-index: 1;
-                background-image: url('./img/fundo_recorte.jpg');
+                background-image: url('./img/fundo_web.jpg');
             }
 
             .barra-login {
@@ -76,23 +86,25 @@
                 height: 100vh;
                 position: relative;
                 z-index: 2;
-                background-color:var(--cor-fundo);
+                background-color: var(--cor-fundo);
+            }
+
+            form {
+                width: 95%;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .barra-imagem {
+                background-image: url('./img/fundo_tablet.jpg');
             }
         }
 
 
 
-    
 
-        form {
-            width: 90%;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 20px;
+
         
-            font-family: Arial, sans-serif;
-               margin: 40px;
-        }
 
         label {
             font-weight: bold;
