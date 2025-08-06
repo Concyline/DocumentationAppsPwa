@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- iOS + Android WebApp support -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/img/icon-256.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0A516D" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+
+    <style>
+        /* Reset base */
+        .login {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Bloco imagem – padrão mobile (full-screen por baixo) */
+        .barra-imagem {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/fundo_celular.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        /* Login sobreposto no mobile */
+        .barra-login {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        /* ✅ Estilo para telas grandes */
+        @media (min-width: 769px) {
+            .login {
+                flex-direction: row;
+            }
+
+            .barra-imagem {
+                position: relative;
+                width: 75%;
+                height: 100vh;
+                z-index: 1;
+                background-image: url('./img/fundo_recorte.jpg');
+            }
+
+            .barra-login {
+                width: 25%;
+                height: 100vh;
+                position: relative;
+                z-index: 2;
+                background-color:var(--cor-fundo);
+            }
+        }
+
+
+
+    
+
+        form {
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        
+            font-family: Arial, sans-serif;
+               margin: 40px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 16px 0 6px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #66afe9;
+            box-shadow: 0 0 4px rgba(102, 175, 233, 0.6);
+        }
+
+        .checkbox-wrapper {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loader da pagina -->
+    <div id="loader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main>
+
+        <div class="login">
+            <div class="barra-login">
+                <form>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email" />
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" />
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember" />
+                        <label for="remember">Remember me</label>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="barra-imagem">
+
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <!-- jQuery + interações -->
+    <script src="./js/mainInjectJsOrCss.js"></script>
+
+</body>
+
+</html>

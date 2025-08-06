@@ -1,0 +1,29 @@
+    :root {
+        --cor-primaria: #0A516D;
+        --cor-secundaria: #BACCA4;
+        
+        --cor-texto: #333333;
+        --cor-hover: #018790;
+
+        --cor-loader_borda: #BACCA4;  
+        --cor-loader_borda_top: #0A516D;
+        --cor-fundo: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+        max-width: 100vw;
+    }
+
+    html,
+    body,
+    main {
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #FFFFFF;
+        color: #BACCA4;
+    }
