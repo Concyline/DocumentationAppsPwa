@@ -30,12 +30,19 @@
   }
 
   // 👉 CSS externos
+  //carregarCSS('./src/css/main.css');
   carregarCSS('./css/main.css');
+
+  //carregarCSS('./src/css/loader.css');
   carregarCSS('./css/loader.css');
+
+  //arregarCSS('./src/css/bootstrap.css');
+  carregarCSS('./css/bootstrap.css');
 
   // 👉 JS externos (injetados no final do body)
   carregarScript('https://code.jquery.com/jquery-3.6.0.min.js');
-   carregarScript('./js/fetchApi.js');
+  //carregarScript('./src/js/fetchApi.js');
+  carregarScript('./js/fetchApi.js');
 })();
 
 

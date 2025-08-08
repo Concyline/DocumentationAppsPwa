@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redefinir Senha</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/loader.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Redefinir Senha</h2>
+
+        <input type="password" id="novaSenha" placeholder="Nova senha" />
+        <input type="password" class="mt-l" id="confirmarSenha" placeholder="Confirmar nova senha" />
+
+        <button id="btnEnviar" class="button">Salvar nova senha</button>
+
+        <div class="message" id="mensagem"></div>
+    </div>
+
+    <script src="./js/fetchApi.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        const mensagem = document.getElementById('mensagem');
+
+        document.getElementById('btnEnviar').addEventListener('click', async () => {
+
+            console.log(token)
+
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            if (!novaSenha || !confirmarSenha) {
+                mensagem.textContent = "Preencha todos os campos.";
+                mensagem.style.color = "red";
+                return;
+            }
+
+            if (novaSenha !== confirmarSenha) {
+                mensagem.textContent = "As senhas não coincidem.";
+                mensagem.style.color = "red";
+                return;
+            }
+
+            try {
+                const resposta = await fetch("https://seuservico.com/api/redefinir-senha", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        token: token,
+                        novaSenha: novaSenha
+                    })
+                });
+
+                const resultado = await resposta.json();
+
+                if (resposta.ok) {
+                    mensagem.textContent = "Senha atualizada com sucesso!";
+                    mensagem.style.color = "green";
+                } else {
+                    mensagem.textContent = resultado.mensagem || "Erro ao atualizar senha.";
+                    mensagem.style.color = "red";
+                }
+
+            } catch (erro) {
+                mensagem.textContent = "Erro de conexão.";
+                mensagem.style.color = "red";
+            }
+        });
+    </script>
+</body>
+
+</html>

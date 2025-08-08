@@ -23,10 +23,9 @@ function fetchApi(method = 'GET', route, data = '') {
 
 function fetchApi(method = 'GET', route, data = '') {
 
-
+    
 
     return new Promise((resolve, reject) => {
-
 
 
         $.ajax({
@@ -38,6 +37,8 @@ function fetchApi(method = 'GET', route, data = '') {
             },
             data: data,
             success: function (response) {
+
+                 console.log(response, 'aureo')
 
                 resolve(response);
             },

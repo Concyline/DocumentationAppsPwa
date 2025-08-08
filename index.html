@@ -12,13 +12,16 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" href="/img/icon-256.png">
+    <link rel="apple-touch-icon" href="/src/img/icon-256.png">
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0A516D" />
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/img/favicon-32.png">
+    <link rel="stylesheet" href="./src/css/bootstrap.css">
+    <link rel="stylesheet" href="./src/css/loader.css">
+    <link rel="stylesheet" href="./src/css/main.css">
 
     <style>
         /* Reset base */
@@ -97,50 +100,6 @@
 
         @media (min-width: 481px) and (max-width: 768px) {}
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin: 16px 0 6px;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            outline: none;
-            font-size: 14px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #66afe9;
-            box-shadow: 0 0 4px rgba(102, 175, 233, 0.6);
-        }
-
-        .checkbox-wrapper {
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 8px 16px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #f8f8f8;
-        }
 
         .versao {
             position: absolute;
@@ -150,8 +109,27 @@
             color: #777;
         }
 
-        .botao-wrapper {
-            text-align: right;
+        #btnLogin {
+            width: 100%;
+        }
+
+        .box-span {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        span {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .link {
+            color: #1838ca;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -176,14 +154,13 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter password" />
 
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="remember" />
-                        <label for="remember">Remember me</label>
+                    <button id="btnLogin" class="button">Entrar</button>
+
+                    <div class="box-span">
+                        <span>Você não tem uma conta? <span id="semConta" class="link">Clique aqui</span></span>
+                        <span>Exqueceu a senha? <span id="esqueceuSenha" class="link">Clique aqui</span></span>
                     </div>
 
-                    <div class="botao-wrapper">
-                        <button id="btnLogin">Entrar</button>
-                    </div>
                 </div>
 
                 <span class="versao">Versão 1.0</span>
@@ -200,10 +177,14 @@
 
     <!-- jQuery + interações -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/mainInjectJsOrCss.js"></script>
+
+
+    <script src="./src/js/fetchApi.js"></script>
 
     <script>
         $('#btnLogin').on('click', async function () {
+
+            console.log('clicou aqui')
 
             var email = $('#email').val().trim()
             var password = $('#password').val().trim()
@@ -214,6 +195,38 @@
             })
 
             const resposta = await fetchApi('POST', '/user/login', data);
+
+            if (resposta.success) {
+                alert(resposta.message)
+            } else {
+                alert(resposta.message)
+            }
+
+        });
+
+        $('#semConta').on('click', async function (e) {
+
+            e.preventDefault(); // Evita o comportamento padrão do link
+            window.location.href = './src/recuperacao.html?token=123456'; // Caminho da página destino
+
+        });
+
+        $('#esqueceuSenha').on('click', async function () {
+
+            console.log("aquib")
+
+            var email = $('#email').val().trim()
+
+
+            if (email == '') {
+                alert('É necessario preencher o campo email!')
+                $('#email').focus();
+                return;
+            }
+
+            var route = `/user/recover?email=${email}`
+
+            const resposta = await fetchApi('POST', route);
 
             if (resposta.success) {
                 alert(resposta.message)

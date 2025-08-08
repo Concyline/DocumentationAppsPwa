@@ -1,0 +1,50 @@
+ label {
+     font-weight: bold;
+     display: block;
+     margin: 16px 0 6px;
+ }
+
+ input[type="email"],
+ input[type="password"] {
+     width: 100%;
+     padding: 10px 12px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     outline: none;
+     font-size: 14px;
+     transition: border-color 0.3s, box-shadow 0.3s;
+ }
+
+ input[type="email"]:focus,
+ input[type="password"]:focus {
+     border-color: #66afe9;
+     box-shadow: 0 0 4px rgba(102, 175, 233, 0.6);
+ }
+
+ .checkbox-wrapper {
+     margin-top: 12px;
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     font-size: 14px;
+ }
+
+ .button {
+     margin-top: 20px;
+     padding: 8px 16px;
+     background-color: #0D6EFD;
+     border: 1px solid #0B5ED7;
+     border-radius: 5px;
+     font-size: 14px;
+     cursor: pointer;
+     color: #FFFFFF;
+
+ }
+
+ .button-primary:hover {
+     background-color: #0B5ED7;
+ }
+
+ .mt-l {
+     margin-top: 15px;
+ }
